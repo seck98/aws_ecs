@@ -41,21 +41,24 @@ const email=ref("")
 const password=ref("")
 
 
-function onSubmitClick(){
+function onSubmitClick() {
+  const data = {
+    email: email.value,
+    password: password.value
+  }
 
-  const data = (
-    email,
-    password
-  )
-  alert(email.value + password.value)
-
-  const req={
+  const req = {
+    method: "POST",
     headers: {
-      "Content-Type":"application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
   }
 
-  fetch('http://localhost:3000/api/vi/auth',req)
+  fetch("http://localhost:3000/api/v1/auth", req)
+    .then(res => res.json())
+    .then(res => console.log("Réponse backend :", res))
+    .catch(err => console.error("Erreur backend :", err))
 }
+
 </script>

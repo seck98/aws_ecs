@@ -1,0 +1,15 @@
+# docker-compose-tearoom.yml
+version: "3.8"
+
+services:
+  backend:
+    build: ./tearoom-backend-aws
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./tearoom-frontend-aws
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
